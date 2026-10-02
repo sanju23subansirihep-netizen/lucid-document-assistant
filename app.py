@@ -29,7 +29,7 @@ TOP_K         = 5
 # ---------- PAGE ----------
 st.set_page_config(
     page_title="Lucid",
-    page_icon="◆",
+    page_icon="🔷",
     layout="wide",
 )
 
@@ -82,11 +82,9 @@ load_css()
 # ---------- INIT ----------
 @st.cache_resource
 def get_openai():
-    # Try Streamlit secrets first (for cloud deployment)
     try:
         api_key = st.secrets["OPENAI_API_KEY"]
     except Exception:
-        # Fall back to local file (for local use)
         api_key = open(KEY_FILE, "r", encoding="utf-8").read().strip()
     return OpenAI(api_key=api_key)
 
@@ -246,12 +244,27 @@ def build_prompts(hits, question):
         f"[From: {m['source']}, chunk {m['chunk']}]\n{d}" for d, m, _ in hits
     )
     sys_prompt = (
-        "You are Lucid, an assistant for project documents. "
-        "Answer ONLY using the context below. If not found, say "
-        "'I could not find this in the provided documents.' "
-        "Cite source file names at the end."
+        "You are Lucid, a knowledgeable assistant for project and business documents. "
+        "Your job is to answer the user's question clearly and helpfully — "
+        "using the provided context as your primary source of truth, but also "
+        "drawing on your general knowledge, reasoning, and expertise where appropriate. "
+        "\n\n"
+        "Guidelines:\n"
+        "- If the answer is clearly in the context, base your answer on it and cite the source.\n"
+        "- If the context only partially answers, use it as a starting point and "
+        "add your own analysis, opinions, or suggestions — but make it clear which parts "
+        "are from the document and which are your own.\n"
+        "- If the context has nothing relevant, still try to help using your general "
+        "knowledge — but clearly say the answer is not from the provided documents.\n"
+        "- Be direct, useful, and conversational. Avoid hedging when you have enough "
+        "information to give a clear answer.\n"
+        "- When you cite sources, do so naturally."
     )
-    user_prompt = f"CONTEXT:\n{context}\n\nQUESTION:\n{question}\n\nANSWER:"
+    user_prompt = (
+        f"CONTEXT FROM USER'S DOCUMENTS:\n{context}\n\n"
+        f"QUESTION:\n{question}\n\n"
+        f"ANSWER (helpful, clear, and grounded in the context where relevant):"
+    )
     return sys_prompt, user_prompt
 
 # ---------- PDF EXPORT ----------
@@ -274,7 +287,7 @@ def export_chat_pdf(messages):
         pdf.ln(2)
     return bytes(pdf.output())
 
-# ---------- SIDEBAR ----------
+# ================= SIDEBAR =================
 with st.sidebar:
     st.markdown("""
     <div class="lucid-brand">
@@ -436,7 +449,7 @@ with st.sidebar:
             st.success(f"Indexed {count} chunks.")
             st.rerun()
 
-# ---------- DARK MODE OVERRIDE ----------
+# ---------- DARK MODE ----------
 if st.session_state.get("dark_mode", False):
     st.markdown("""
 <style>
@@ -480,7 +493,7 @@ h1, h2, h3, p, span, label, .stMarkdown {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- MAIN HERO ----------
+# ================= MAIN =================
 st.markdown("""
 <div class="lucid-hero">
     <div class="wordmark">Lucid</div>
@@ -488,7 +501,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---------- EXPORT BUTTON ----------
 if st.session_state.messages:
     col1, col2 = st.columns([6, 1])
     with col2:
@@ -500,18 +512,16 @@ if st.session_state.messages:
             mime="application/pdf",
         )
 
-# ---------- CHAT MESSAGES ----------
-AVATARS = {"user": "👤", "assistant": "◆"}
+AVATARS = {"user": "👤", "assistant": "🔷"}
 
 for m in st.session_state.messages:
-    with st.chat_message(m["role"], avatar=AVATARS.get(m["role"], "◆")):
+    with st.chat_message(m["role"], avatar=AVATARS.get(m["role"], "🔷")):
         st.markdown(m["content"])
         if m.get("sources"):
             with st.expander("Sources used"):
                 for s in m["sources"]:
                     st.write(f"· **{s['source']}** — chunk {s['chunk']} (score {s['score']:.3f})")
 
-# ---------- CHAT INPUT ----------
 prompt = st.chat_input("Ask anything of your documents...")
 
 if prompt:
@@ -519,7 +529,7 @@ if prompt:
     with st.chat_message("user", avatar="👤"):
         st.markdown(prompt)
 
-    with st.chat_message("assistant", avatar="◆"):
+    with st.chat_message("assistant", avatar="🔷"):
         try:
             hits = find_chunks(collection, prompt)
             sys_prompt, user_prompt = build_prompts(hits, prompt)
@@ -530,7 +540,7 @@ if prompt:
                     {"role": "system", "content": sys_prompt},
                     {"role": "user",   "content": user_prompt},
                 ],
-                temperature=0.2,
+                temperature=0.4,
                 stream=True,
             )
 
