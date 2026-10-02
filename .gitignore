@@ -6,3 +6,11 @@ uploads/
 __pycache__/
 *.pyc
 github_pat_11CQK4DUA0JmIkD0pv03Fo_p.txt
+
+*.backup
+
+*.old
+
+*.before_*
+
+*.broken_*
