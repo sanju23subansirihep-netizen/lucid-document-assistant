@@ -82,7 +82,12 @@ load_css()
 # ---------- INIT ----------
 @st.cache_resource
 def get_openai():
-    api_key = open(KEY_FILE, "r", encoding="utf-8").read().strip()
+    # Try Streamlit secrets first (for cloud deployment)
+    try:
+        api_key = st.secrets["OPENAI_API_KEY"]
+    except Exception:
+        # Fall back to local file (for local use)
+        api_key = open(KEY_FILE, "r", encoding="utf-8").read().strip()
     return OpenAI(api_key=api_key)
 
 @st.cache_resource
