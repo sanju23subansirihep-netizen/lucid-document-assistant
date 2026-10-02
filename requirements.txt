@@ -1,0 +1,10 @@
+streamlit
+openai
+chromadb
+pdfplumber
+python-docx
+openpyxl
+pandas
+pytesseract
+pypdfium2
+fpdf2

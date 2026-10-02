@@ -1,0 +1,7 @@
+openai_key.txt
+chat_history.json
+chroma_db/
+uploads/
+.streamlit/secrets.toml
+__pycache__/
+*.pyc

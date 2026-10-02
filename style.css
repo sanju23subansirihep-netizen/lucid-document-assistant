@@ -1,0 +1,406 @@
+/* ============================================================
+   LUCID — DESIGN SYSTEM v1.5
+   "Clarity from complexity"
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-main:        #FAFAFA;
+    --bg-surface:     #FFFFFF;
+    --bg-sidebar:     #0B1E38;
+    --bg-hover:       #F4F5F7;
+
+    --text-primary:   #0F172A;
+    --text-secondary: #64748B;
+    --text-tertiary:  #94A3B8;
+    --text-sidebar:   #E8EEF6;
+    --text-sidebar-muted: #8BA3BE;
+
+    --accent:         #2E86AB;
+    --accent-soft:    #E8F2FA;
+
+    --border-subtle:  #EAEAEA;
+    --border-medium:  #E0E0E0;
+
+    --shadow-sm:      0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-md:      0 2px 8px rgba(15, 23, 42, 0.06);
+
+    --radius-sm:      8px;
+    --radius-md:      12px;
+    --radius-lg:      16px;
+
+    --ease:           cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#MainMenu, footer { visibility: hidden; }
+
+.main, [data-testid="stAppViewContainer"] {
+    background: var(--bg-main) !important;
+}
+
+.block-container {
+    padding-top: 48px !important;
+    padding-bottom: 140px !important;
+    max-width: 760px !important;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1 { font-size: 32px !important; font-weight: 600 !important; color: var(--text-primary) !important; letter-spacing: -0.02em !important; line-height: 1.2 !important; }
+h2 { font-size: 20px !important; font-weight: 600 !important; color: var(--text-primary) !important; }
+h3 { font-size: 15px !important; font-weight: 600 !important; color: var(--text-primary) !important; }
+p, span, label, .stMarkdown { font-size: 16px !important; line-height: 1.5 !important; color: var(--text-primary); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.lucid-hero { text-align: center; padding: 32px 0 48px 0; margin-bottom: 24px; }
+.lucid-hero .wordmark {
+    display: inline-block;
+    font-size: 64px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: none;
+    -webkit-text-fill-color: var(--text-primary);
+}
+.lucid-hero .tagline {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 17px;
+    font-weight: 400;
+    margin-top: 16px;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+section[data-testid="stSidebar"] {
+    background: var(--bg-sidebar) !important;
+    border-right: none !important;
+}
+
+section[data-testid="stSidebar"] > div:first-child {
+    padding: 24px 16px !important;
+}
+
+/* Brand */
+.lucid-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding: 0 4px; }
+.lucid-brand .monogram {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    color: #FFFFFF;
+    border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(46, 134, 171, 0.35);
+    flex-shrink: 0;
+}
+.lucid-brand .brand-name { color: #FFFFFF; font-size: 17px; font-weight: 600; line-height: 1; }
+.lucid-brand .brand-tag { display: block; color: var(--text-sidebar-muted); font-size: 11px; margin-top: 3px; }
+
+/* Sidebar headings */
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    margin-bottom: 12px !important;
+}
+
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] .stMarkdown {
+    color: var(--text-sidebar) !important;
+    font-size: 14px !important;
+}
+
+section[data-testid="stSidebar"] hr {
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin: 16px 0 !important;
+}
+
+/* Sidebar buttons */
+section[data-testid="stSidebar"] .stButton > button {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    padding: 8px 14px !important;
+    transition: all 0.18s var(--ease) !important;
+}
+
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+/* Sidebar text inputs */
+section[data-testid="stSidebar"] input[type="text"],
+section[data-testid="stSidebar"] textarea {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+}
+
+section[data-testid="stSidebar"] input[type="text"]:focus,
+section[data-testid="stSidebar"] textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.2) !important;
+}
+
+/* ============================================================
+   SELECTBOX — FULLY COVERED
+   Every possible selector Streamlit may use.
+   ============================================================ */
+
+/* Container */
+section[data-testid="stSidebar"] [data-baseweb="select"] {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+/* Every element inside gets white text */
+section[data-testid="stSidebar"] [data-baseweb="select"] *,
+section[data-testid="stSidebar"] [data-baseweb="select"] div,
+section[data-testid="stSidebar"] [data-baseweb="select"] span,
+section[data-testid="stSidebar"] [data-baseweb="select"] p,
+section[data-testid="stSidebar"] [data-baseweb="select"] input {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* The visible closed box */
+section[data-testid="stSidebar"] [data-baseweb="select"] > div:first-child {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+section[data-testid="stSidebar"] [data-baseweb="select"] > div:first-child:hover {
+    border-color: var(--accent) !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* Arrow */
+section[data-testid="stSidebar"] [data-baseweb="select"] svg {
+    fill: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+/* Dropdown menu */
+[data-baseweb="popover"] [role="listbox"],
+[data-baseweb="popover"] [role="option"],
+[data-baseweb="popover"] ul,
+[data-baseweb="popover"] li,
+[data-baseweb="popover"] * {
+    background: var(--bg-sidebar) !important;
+    color: #FFFFFF !important;
+}
+
+[data-baseweb="popover"] [role="option"]:hover {
+    background: var(--accent) !important;
+    color: #FFFFFF !important;
+}
+
+/* File uploader */
+section[data-testid="stSidebar"] [data-testid="stFileUploader"] {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1.5px dashed rgba(255, 255, 255, 0.18) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 16px !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stFileUploader"] * {
+    color: var(--text-sidebar) !important;
+}
+
+/* Sidebar toggle buttons */
+section[data-testid="stSidebar"] button[kind="header"] {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: var(--radius-sm) !important;
+    opacity: 1 !important;
+}
+
+section[data-testid="stSidebar"] button[kind="header"] svg {
+    fill: #FFFFFF !important;
+}
+
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="stSidebarCollapsedControl"] > div,
+[data-testid="stSidebarCollapsedControl"] button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: var(--bg-sidebar) !important;
+    color: #FFFFFF !important;
+    border: 2px solid var(--accent) !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: var(--shadow-md) !important;
+    padding: 6px !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] svg,
+[data-testid="stSidebarCollapsedControl"] button svg {
+    fill: #FFFFFF !important;
+}
+
+/* ============================================================
+   CHAT
+   ============================================================ */
+[data-testid="stChatMessage"] {
+    background: var(--bg-surface) !important;
+    padding: 20px 24px !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: 16px !important;
+    border: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+[data-testid="stChatMessage"]:hover {
+    box-shadow: var(--shadow-md) !important;
+}
+
+[data-testid="stChatMessage"] p {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    color: var(--text-primary) !important;
+}
+
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    background: var(--accent-soft) !important;
+    border-color: transparent !important;
+}
+
+[data-testid="stChatInput"] {
+    background: var(--bg-surface) !important;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+[data-testid="stChatInput"]:focus-within {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 4px rgba(46, 134, 171, 0.12), var(--shadow-md) !important;
+}
+
+[data-testid="stChatInput"] textarea {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 15px !important;
+    color: var(--text-primary) !important;
+}
+
+[data-testid="stChatInput"] textarea::placeholder {
+    color: var(--text-tertiary) !important;
+}
+
+/* ============================================================
+   BUTTONS / EXPANDERS / MISC
+   ============================================================ */
+.main .stButton > button {
+    background: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+}
+
+.main .stButton > button:hover {
+    background: var(--bg-hover) !important;
+    border-color: var(--border-medium) !important;
+}
+
+.streamlit-expanderHeader,
+details summary {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    color: var(--text-primary) !important;
+    padding: 10px 14px !important;
+}
+
+.stProgress > div > div > div {
+    background: linear-gradient(90deg, var(--bg-sidebar), var(--accent)) !important;
+    border-radius: 4px !important;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.25);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.45);
+    background-clip: padding-box;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+[data-testid="stChatMessage"] {
+    animation: fadeInUp 0.3s var(--ease);
+}
+
+/* ============================================================
+   FINAL SELECTBOX FIX (v1.6)
+   Streamlit renders the selected value as an <input role="combobox">.
+   This rule targets that exact element.
+   ============================================================ */
+
+section[data-testid="stSidebar"] [data-baseweb="select"] input[role="combobox"],
+section[data-testid="stSidebar"] input[aria-label*="collection" i],
+section[data-testid="stSidebar"] input[role="combobox"] {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    caret-color: #FFFFFF !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* When focused, keep white text */
+section[data-testid="stSidebar"] [data-baseweb="select"] input[role="combobox"]:focus,
+section[data-testid="stSidebar"] input[role="combobox"]:focus {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: transparent !important;
+}
+
+/* Placeholder text (shown when nothing is selected) */
+section[data-testid="stSidebar"] [data-baseweb="select"] input[role="combobox"]::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+}

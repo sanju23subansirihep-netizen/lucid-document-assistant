@@ -1,0 +1,490 @@
+/* ============================================================
+   SANJU DOCUMENT ASSISTANT — DESIGN SYSTEM
+   Version: 1.0 (Stage A Foundation)
+   Inspiration: Linear.app + Apple restraint
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root {
+    --bg-main:       #FAFAFA;
+    --bg-surface:    #FFFFFF;
+    --bg-sidebar:    #0B1E38;
+    --bg-hover:      #F4F5F7;
+
+    --text-primary:   #0F172A;
+    --text-secondary: #64748B;
+    --text-sidebar:   #E8EEF6;
+    --text-sidebar-muted: #8BA3BE;
+
+    --accent:         #2E86AB;
+    --accent-hover:   #3FA9D4;
+    --accent-soft:    #E8F2FA;
+
+    --border-subtle:  #EAEAEA;
+    --border-medium:  #E0E0E0;
+
+    --shadow-sm:      0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-md:      0 2px 8px rgba(15, 23, 42, 0.06);
+    --shadow-lg:      0 8px 24px rgba(15, 23, 42, 0.08);
+
+    --radius-sm:      8px;
+    --radius-md:      12px;
+    --radius-lg:      16px;
+
+    --space-xs:       8px;
+    --space-sm:       12px;
+    --space-md:       16px;
+    --space-lg:       24px;
+    --space-xl:       32px;
+    --space-2xl:      48px;
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#MainMenu, footer {
+    visibility: hidden;
+}
+
+.main, [data-testid="stAppViewContainer"] {
+    background: var(--bg-main) !important;
+}
+
+.block-container {
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: 140px !important;
+    max-width: 720px !important;
+}
+
+/* ============================================================
+   3. TYPOGRAPHY HIERARCHY (only 3 sizes)
+   ============================================================ */
+h1 {
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+}
+
+h2 {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.01em !important;
+}
+
+h3 {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+}
+
+p, span, label, .stMarkdown {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    color: var(--text-primary);
+}
+
+/* ============================================================
+   4. SIDEBAR — quiet, dark, restrained
+   ============================================================ */
+section[data-testid="stSidebar"] {
+    background: var(--bg-sidebar) !important;
+    border-right: none !important;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+section[data-testid="stSidebar"] > div:first-child {
+    padding: var(--space-lg) var(--space-md) !important;
+}
+
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: var(--space-sm) !important;
+}
+
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] .stMarkdown {
+    color: var(--text-sidebar) !important;
+    font-size: 14px !important;
+}
+
+section[data-testid="stSidebar"] .stCaption,
+section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+    color: var(--text-sidebar-muted) !important;
+    font-size: 12px !important;
+}
+
+section[data-testid="stSidebar"] hr {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    margin: var(--space-md) 0 !important;
+}
+
+/* Sidebar buttons */
+section[data-testid="stSidebar"] .stButton > button {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    padding: 8px 14px !important;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    transform: translateY(-1px);
+}
+
+section[data-testid="stSidebar"] .stButton > button:active {
+    transform: translateY(0);
+}
+
+/* Sidebar inputs */
+section[data-testid="stSidebar"] input,
+section[data-testid="stSidebar"] textarea,
+section[data-testid="stSidebar"] select {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+    transition: all 0.18s ease;
+}
+
+section[data-testid="stSidebar"] input:focus,
+section[data-testid="stSidebar"] textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.2) !important;
+}
+
+/* ============================================================
+   5. SIDEBAR TOGGLE BUTTONS (both states, high contrast)
+   ============================================================ */
+
+/* Collapse arrow inside sidebar */
+section[data-testid="stSidebar"] button[kind="header"] {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: var(--radius-sm) !important;
+    opacity: 1 !important;
+    transition: all 0.18s ease;
+}
+
+section[data-testid="stSidebar"] button[kind="header"]:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+section[data-testid="stSidebar"] button[kind="header"] svg {
+    fill: #FFFFFF !important;
+}
+
+/* Expand arrow when sidebar is collapsed */
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="stSidebarCollapsedControl"] > div,
+[data-testid="stSidebarCollapsedControl"] button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: var(--bg-sidebar) !important;
+    color: #FFFFFF !important;
+    border: 2px solid var(--accent) !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: var(--shadow-md) !important;
+    padding: 6px !important;
+    transition: all 0.18s ease;
+}
+
+[data-testid="stSidebarCollapsedControl"]:hover {
+    background: var(--accent) !important;
+    transform: scale(1.05);
+}
+
+[data-testid="stSidebarCollapsedControl"] svg,
+[data-testid="stSidebarCollapsedControl"] button svg {
+    fill: #FFFFFF !important;
+}
+
+/* ============================================================
+   6. HERO HEADER
+   ============================================================ */
+.gkhep-header {
+    text-align: center;
+    padding: var(--space-lg) 0 var(--space-xl) 0;
+    margin-bottom: var(--space-lg);
+}
+
+.gkhep-header h1 {
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    color: var(--text-primary) !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    letter-spacing: -0.025em !important;
+    line-height: 1.2 !important;
+}
+
+.gkhep-header p {
+    color: var(--text-secondary) !important;
+    font-size: 15px !important;
+    margin-top: var(--space-xs) !important;
+    font-weight: 400 !important;
+}
+
+/* ============================================================
+   7. CHAT MESSAGES — soft cards, no hard borders
+   ============================================================ */
+[data-testid="stChatMessage"] {
+    background: var(--bg-surface) !important;
+    padding: 20px 24px !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: var(--space-md) !important;
+    border: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.18s ease;
+}
+
+[data-testid="stChatMessage"]:hover {
+    box-shadow: var(--shadow-md) !important;
+}
+
+[data-testid="stChatMessage"] p {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    color: var(--text-primary) !important;
+}
+
+/* User bubble — tinted */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    background: var(--accent-soft) !important;
+    border-color: transparent !important;
+}
+
+/* Assistant bubble — clean surface */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+    background: var(--bg-surface) !important;
+}
+
+/* ============================================================
+   8. CHAT INPUT — centered, floating
+   ============================================================ */
+[data-testid="stChatInput"] {
+    background: var(--bg-surface) !important;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-md) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+[data-testid="stChatInput"]:focus-within {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 4px rgba(46, 134, 171, 0.12),
+                var(--shadow-md) !important;
+}
+
+[data-testid="stChatInput"] textarea {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 15px !important;
+    color: var(--text-primary) !important;
+}
+
+[data-testid="stChatInput"] textarea::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+/* ============================================================
+   9. MAIN AREA BUTTONS
+   ============================================================ */
+.main .stButton > button {
+    background: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+    transition: all 0.18s ease;
+}
+
+.main .stButton > button:hover {
+    background: var(--bg-hover) !important;
+    border-color: var(--border-medium) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ============================================================
+   10. EXPANDERS
+   ============================================================ */
+.streamlit-expanderHeader {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    color: var(--text-primary) !important;
+    padding: 10px 14px !important;
+    transition: all 0.18s ease;
+}
+
+.streamlit-expanderHeader:hover {
+    background: var(--bg-hover) !important;
+}
+
+.streamlit-expanderContent {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* ============================================================
+   11. PROGRESS BAR
+   ============================================================ */
+.stProgress > div > div > div {
+    background: linear-gradient(90deg, var(--bg-sidebar), var(--accent)) !important;
+    border-radius: 4px !important;
+}
+
+/* ============================================================
+   12. FILE UPLOADER
+   ============================================================ */
+[data-testid="stFileUploader"] {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1.5px dashed rgba(255, 255, 255, 0.2) !important;
+    border-radius: var(--radius-md) !important;
+    padding: var(--space-md) !important;
+    transition: all 0.18s ease;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--accent) !important;
+    background: rgba(46, 134, 171, 0.08) !important;
+}
+
+[data-testid="stFileUploader"] * {
+    color: var(--text-sidebar) !important;
+}
+
+/* ============================================================
+   13. SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.25);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.45);
+    background-clip: padding-box;
+}
+
+/* ============================================================
+   14. SELECTBOX (main area)
+   ============================================================ */
+[data-baseweb="select"] > div {
+    border-radius: var(--radius-sm) !important;
+    border-color: var(--border-subtle) !important;
+    background: var(--bg-surface) !important;
+    transition: all 0.18s ease;
+}
+
+[data-baseweb="select"] > div:hover {
+    border-color: var(--accent) !important;
+}
+
+/* ============================================================
+   15. DARK MODE OVERRIDE (when toggled)
+   ============================================================ */
+.dark-mode-active .main,
+.dark-mode-active [data-testid="stAppViewContainer"],
+.dark-mode-active .block-container {
+    background: #0B1524 !important;
+}
+
+.dark-mode-active h1,
+.dark-mode-active h2,
+.dark-mode-active h3,
+.dark-mode-active p,
+.dark-mode-active span,
+.dark-mode-active label,
+.dark-mode-active .stMarkdown {
+    color: #E8EEF6 !important;
+}
+
+.dark-mode-active .gkhep-header h1 {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.dark-mode-active .gkhep-header p {
+    color: #8BA3BE !important;
+}
+
+.dark-mode-active [data-testid="stChatMessage"] {
+    background: #12203A !important;
+    border-color: #1F3456 !important;
+}
+
+.dark-mode-active [data-testid="stChatMessage"] p {
+    color: #E8EEF6 !important;
+}
+
+.dark-mode-active [data-testid="stChatInput"] {
+    background: #12203A !important;
+    border-color: #1F3456 !important;
+}
+
+.dark-mode-active [data-testid="stChatInput"] textarea {
+    color: #E8EEF6 !important;
+}
+
+/* ============================================================
+   16. ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-testid="stChatMessage"] {
+    animation: fadeInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
